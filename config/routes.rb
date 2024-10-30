@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   # Static pages
   get '/coming_soon', to: 'coming_soon#index'
+  get '/about', to: 'pages#about', as: :about
+
 
   # Subscription management
   resources :subscriptions, only: [:create]
