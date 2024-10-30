@@ -1,0 +1,24 @@
+<h1>Темы</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Заголовок</th>
+      <th>Автор</th>
+      <th>Действия</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @topics.each do |topic| %>
+      <tr>
+        <td><%= topic.title %></td>
+        <td><%= topic.user.email %></td>
+        <td>
+          <%= link_to 'Удалить', admin_topic_path(topic), method: :delete, data: { confirm: 'Вы уверены, что хотите удалить эту тему?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Назад', root_path %>

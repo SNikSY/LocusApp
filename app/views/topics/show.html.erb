@@ -1,0 +1,43 @@
+<h1><%= @topic.title %></h1>
+<p><%= @topic.description %></p>
+<p>Категория: <%= @topic.category&.title %></p>
+<p>Локация: <%= @topic.location&.name %></p>
+<p>Создано: <%= @topic.created_at.strftime("%d.%m.%Y %H:%M") %></p>
+
+<% if can?(:update, @topic) %>
+  <%= link_to 'Редактировать', edit_topic_path(@topic) %>
+<% end %>
+
+<% if can?(:destroy, @topic) %>
+  <%= form_with url: topic_path(@topic), method: :post, local: true do %>
+    <%= hidden_field_tag '_method', 'delete' %>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= submit_tag 'Удалить', data: { confirm: 'Вы уверены, что хотите удалить эту тему?' } %>
+  <% end %>
+<% end %>
+<div class="topic-images">
+  <% @topic.images.each do |image| %>
+    <%= image_tag image, class: "topic-image" %>
+  <% end %>
+</div>
+<%= link_to 'Назад к списку тем', topics_path %>
+
+<h3>Комментарии</h3>
+<% @topic.comments.each do |comment| %>
+  <div class="comment">
+    <p><strong><%= comment.user.email %>:</strong> <%= comment.content %></p>
+    <p>Дата: <%= comment.created_at.strftime("%d.%m.%Y %H:%M") %></p>
+  </div>
+<% end %>
+
+<h4>Добавить комментарий</h4>
+<%= form_with model: [@topic, @topic.comments.build], local: true do |f| %>
+  <div class="field">
+    <%= f.label :content, "Ваш комментарий" %><br />
+    <%= f.text_area :content %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Добавить комментарий" %>
+  </div>
+<% end %>

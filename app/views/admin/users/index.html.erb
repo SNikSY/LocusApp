@@ -1,0 +1,26 @@
+<h1>Пользователи</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Роль</th>
+      <th>Действия</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.admin? ? 'Админ' : 'Пользователь' %></td>
+        <td>
+          <% unless user == current_user %>
+            <%= link_to 'Удалить', admin_user_path(user), method: :delete, data: { confirm: 'Вы уверены, что хотите удалить этого пользователя?' } %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Назад', root_path %>

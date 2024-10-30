@@ -1,0 +1,24 @@
+<h1>Комментарии</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Контент</th>
+      <th>Автор</th>
+      <th>Действия</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.content %></td>
+        <td><%= comment.user.email %></td>
+        <td>
+          <%= link_to 'Удалить', admin_comment_path(comment), method: :delete, data: { confirm: 'Вы уверены, что хотите удалить этот комментарий?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Назад', root_path %>

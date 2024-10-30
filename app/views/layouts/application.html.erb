@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<%= stylesheet_link_tag 'navbar', media: 'all' %>
+
+<body>
+<div class="upbar">
+<div class="logo_wrapper"><%= image_tag(asset_path('LogoBig.svg'), alt: 'Home', class: "logo-svg") %></div>
+ 
+ <%= form_with url: topics_path, method: :get, local: true do |form| %>
+  <%= form.text_field :query, placeholder: "Поиск", class: "search-box" %>
+<% end %>
+
+
+
+ <div class="theme_create"><%= link_to 'Создать тему', new_topic_path, class: "linker green" %></div>
+ 
+</div>
+<div class="main_flex">
+  <nav>
+    <div class="nav-wrapper">
+      <h5>МЕНЮ</h5>
+      <ul class="nav-pages">
+        <li class="nav-page">
+          <%= image_tag(asset_path('Home_01.png'), alt: 'Home', class: "nav-icon") %>
+          <%= link_to "Мой город", root_path, class: "brand-logo" %>
+        </li>
+        <li class="nav-page-unactive">
+        <%= image_tag(asset_path('Home_01.png'), alt: 'Home', class: "nav-icon") %>
+        <%= link_to "Популярное", root_path, class: "brand-logo-un" %>
+      </li>
+      <li class="nav-page-unactive">
+      <%= image_tag(asset_path('Home_01.png'), alt: 'Home', class: "nav-icon") %>
+      <%= link_to "Обсуждения", root_path, class: "brand-logo-un" %>
+    </li>
+      </ul>
+      </div>
+      <div class='user_nav_card'>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <% if user_signed_in? %>
+        <li>
+        <%= image_tag(asset_path('userpic.png'), alt: 'User', class: "user-icon") %>
+        <%= link_to 'Профиль', edit_user_registration_path %>
+        </li>
+        
+        
+        <% if current_user.admin? %>
+          <li><%= link_to 'Админ-панель', admin_users_path %></li>
+          <li><%= form_with url: destroy_user_session_path, method: :delete, local: true do %>
+            <%= submit_tag 'Выйти', data: { confirm: 'Вы уверены, что хотите выйти?' } %>
+          <% end %>
+        </li>
+        <% end %>
+      <% else %>
+        <li><%= link_to 'Войти', new_user_session_path %></li>
+        <li><%= link_to 'Зарегистрироваться', new_user_registration_path %></li>
+      <% end %>
+      
+    </ul>
+      </div>
+      
+      
+    
+  </nav>
+
+  <div class="container">
+    <%= yield %>
+  </div>
+  <div class="nav_nav"> 
+          <div class="nav-wrapper">
+          <h5>Темы</h5>
+      <ul class="nav-pages">
+        <li class="nav-page-unactive">
+          <%= image_tag(asset_path('design_brush.png'), alt: 'Home', class: "theme-icon") %>
+          <%= link_to "Дизайн", root_path, class: "brand-logo-un" %>
+        </li>
+        <li class="nav-page-unactive">
+        <%= image_tag(asset_path('culture_family.png'), alt: 'Home', class: "theme-icon") %>
+        <%= link_to "Культура", root_path, class: "brand-logo-un" %>
+      </li>
+      <li class="nav-page-unactive">
+      <%= image_tag(asset_path('environment_forest.png'), alt: 'Home', class: "theme-icon") %>
+      <%= link_to "Окружающая среда", root_path, class: "brand-logo-un" %>
+    </li>
+    <li class="nav-page-unactive">
+      <%= image_tag(asset_path('transport_bike.png'), alt: 'Home', class: "theme-icon") %>
+      <%= link_to "Транспорт", root_path, class: "brand-logo-un" %>
+    </li>
+    <li class="nav-page-unactive">
+      <%= image_tag(asset_path('economics_money.png'), alt: 'Home', class: "theme-icon") %>
+      <%= link_to "Экономика", root_path, class: "brand-logo-un" %>
+    </li>
+    <li class="nav-page-unactive">
+      <%= image_tag(asset_path('real_estate.png'), alt: 'Home', class: "theme-icon") %>
+      <%= link_to "Недвижимость", root_path, class: "brand-logo-un" %>
+    </li>
+    <li class="nav-page-unactive">
+      <%= image_tag(asset_path('technology.png'), alt: 'Home', class: "theme-icon") %>
+      <%= link_to "Технологии", root_path, class: "brand-logo-un" %>
+    </li>
+    <li class="nav-page-unactive">
+      <%= image_tag(asset_path('government.png'), alt: 'Home', class: "theme-icon") %>
+      <%= link_to "Правительство", root_path, class: "brand-logo-un" %>
+    </li>
+      </ul>
+      </div>
+          </div>
+     </div>
+  </div>
+</body>
+</html>
+

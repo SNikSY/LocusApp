@@ -1,0 +1,46 @@
+<h2>Создание новой темы</h2>
+
+<% if @topic.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@topic.errors.count, "ошибка") %>:</h2>
+    <ul>
+      <% @topic.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with(model: @topic, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :title, "Заголовок темы" %><br />
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description, "Описание темы" %><br />
+    <%= form.text_area :description %>
+  </div>
+
+  <!-- Поле для загрузки изображений -->
+  <div class="field">
+    <%= form.label :images, "Прикрепить фото" %><br />
+    <%= form.file_field :images, multiple: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category_id, "Категория" %><br />
+    <%= form.collection_select :category_id, Category.all, :id, :title, include_blank: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location_id, "Локация" %><br />
+    <%= form.collection_select :location_id, Location.all, :id, :name, include_blank: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Создать тему" %>
+  </div>
+<% end %>
+
+<%= link_to 'Назад', topics_path %>
