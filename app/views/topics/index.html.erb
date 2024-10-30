@@ -1,40 +1,35 @@
 <%= stylesheet_link_tag 'navbar', media: 'all' %>
 
-
 <div class="theme_block">
-<% if @topics.any? %>
-  <% @topics.each do |topic| %>
-    <div class="topic">
-          <div class="category"><%= topic.category&.title %></div>
-          <div><%= topic.user&.email %></div>
-          <h2><%= link_to topic.title, topic_path(topic), class: 'linker' %></h2>
-          <p><%= topic.description %></p>
-          <%= image_tag(asset_path('postimage.png'), alt: 'Home', class: "post_image") %>
-          <div class="post_underbar">
-               <div class="post_activities">
-                    <div class="comment_section">
-                    <h2>
-                         <%= link_to topic_path(topic), class: 'linker' do %>
-                         <%= image_tag(asset_path('comments.png'), alt: 'Comments', class: "comment_icon") %>
-                         <% end %>
-                    </h2>
-
-                    <h5>64</h5>
-                    </div>
-                    <%= image_tag(asset_path('share.png'), alt: 'Home', class: "share_icon") %>
-               </div>
-               <div class="comment_section">
-                    <%= image_tag(asset_path('views.png'), alt: 'Home', class: "views_icon") %>
-                    <h5>1 тыс.</h5>
-                    </div>
+  <% if @topics.any? %>
+    <% @topics.each do |topic| %>
+      <div class="topic">
+        <div class="category"><%= topic.category&.title %></div>
+        <div><%= topic.user&.email %></div>
+        <h2><%= link_to topic.title, topic_path(topic), class: 'linker' %></h2>
+        <p><%= topic.description %></p>
+        <%= image_tag(asset_path('postimage.png'), alt: 'Home', class: "post_image") %>
+        <div class="post_underbar">
+          <div class="post_activities">
+            <div class="comment_section">
+              <h2>
+                <%= link_to topic_path(topic), class: 'linker' do %>
+                  <%= image_tag(asset_path('comments.png'), alt: 'Comments', class: "comment_icon") %>
+                <% end %>
+              </h2>
+              <h5>64</h5>
+            </div>
+            <%= image_tag(asset_path('share.png'), alt: 'Home', class: "share_icon") %>
           </div>
-    </div>
-    
-  <% end %>
-     
-     
-</div>
+          <div class="comment_section">
+            <%= image_tag(asset_path('views.png'), alt: 'Home', class: "views_icon") %>
+            <h5>1 тыс.</h5>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
-<% else %>
-  <p>Тем пока нет. Будьте первым, кто создаст тему!</p>
-<% end %>
+  <% else %>
+    <p>Тем пока нет. Будьте первым, кто создаст тему!</p>
+  <% end %>

@@ -12,9 +12,8 @@
  *
  *= require_tree .
  *= require_self
- //= link reset.css
- //= link countdown.css
-//= link countdown.js
-//=navbar.css
-
+ *= link reset.css
+ *= link countdown.css
+ *= link countdown.js
+ *= link navbar.css
  */

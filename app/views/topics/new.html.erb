@@ -1,46 +1,50 @@
-<h2>Создание новой темы</h2>
+<div class="container">
+  <h2 class="mb-4">Создание новой темы</h2>
 
-<% if @topic.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@topic.errors.count, "ошибка") %>:</h2>
-    <ul>
-      <% @topic.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+  <% if @topic.errors.any? %>
+    <div class="alert alert-danger" id="error_explanation">
+      <h4><%= pluralize(@topic.errors.count, "ошибка") %>:</h4>
+      <ul class="mb-0">
+        <% @topic.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= form_with(model: @topic, local: true) do |form| %>
-  <div class="field">
-    <%= form.label :title, "Заголовок темы" %><br />
-    <%= form.text_field :title %>
-  </div>
+  <%= form_with(model: @topic, local: true) do |form| %>
+    <div class="form-group mb-3">
+      <%= form.label :title, "Заголовок темы", class: "form-label" %>
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :description, "Описание темы" %><br />
-    <%= form.text_area :description %>
-  </div>
+    <div class="form-group mb-3">
+      <%= form.label :description, "Описание темы", class: "form-label" %>
+      <%= form.text_area :description, class: "form-control", rows: 5 %>
+    </div>
 
-  <!-- Поле для загрузки изображений -->
-  <div class="field">
-    <%= form.label :images, "Прикрепить фото" %><br />
-    <%= form.file_field :images, multiple: true %>
-  </div>
+    <div class="form-group mb-3">
+      <%= form.label :images, "Прикрепить фото", class: "form-label" %>
+      <%= form.file_field :images, multiple: true, class: "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :category_id, "Категория" %><br />
-    <%= form.collection_select :category_id, Category.all, :id, :title, include_blank: true %>
-  </div>
+    <div class="form-group mb-3">
+      <%= form.label :category_id, "Категория", class: "form-label" %>
+      <%= form.collection_select :category_id, Category.all, :id, :title,
+          { include_blank: true },
+          { class: "form-select" } %>
+    </div>
 
-  <div class="field">
-    <%= form.label :location_id, "Локация" %><br />
-    <%= form.collection_select :location_id, Location.all, :id, :name, include_blank: true %>
-  </div>
+    <div class="form-group mb-3">
+      <%= form.label :location_id, "Локация", class: "form-label" %>
+      <%= form.collection_select :location_id, Location.all, :id, :name,
+          { include_blank: true },
+          { class: "form-select" } %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit "Создать тему" %>
-  </div>
-<% end %>
-
-<%= link_to 'Назад', topics_path %>
+    <div class="form-group">
+      <%= form.submit "Создать тему", class: "btn btn-primary" %>
+      <%= link_to 'Назад', topics_path, class: "btn btn-secondary ms-2" %>
+    </div>
+  <% end %>
+</div>

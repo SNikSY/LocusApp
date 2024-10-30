@@ -1,21 +1,27 @@
 Rails.application.routes.draw do
+  # Authentication routes
   devise_for :users
   
-  # Главная страница для всех пользователей
+  # Root route
   root to: 'topics#index'
 
-  # CRUD для тем, включая вложенные маршруты для комментариев
+  # Topic routes with nested comments
   resources :topics do
     resources :comments, only: [:create]
   end
-  get 'coming_soon', to: 'application#coming_soon'
 
-  # Маршруты для админ-панели
+  # Static pages
+  get '/coming_soon', to: 'coming_soon#index'
+
+  # Subscription management
+  resources :subscriptions, only: [:create]
+
+  # Admin namespace
   namespace :admin do
     get '/', to: 'dashboard#index', as: :dashboard
-    resources :users, only: [:index, :destroy]
-    resources :topics, only: [:index, :destroy]
+    
+    resources :users,    only: [:index, :destroy]
+    resources :topics,   only: [:index, :destroy]
     resources :comments, only: [:index, :destroy]
-  
   end
 end

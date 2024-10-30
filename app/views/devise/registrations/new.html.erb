@@ -1,29 +1,36 @@
-<h2>Регистрация</h2>
+<div class="container mt-4">
+  <h2 class="mb-4">Регистрация</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email, "Электронная почта" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form" }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :password, "Пароль" %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div class="form-group mb-3">
+      <%= f.label :email, "Электронная почта", class: "form-label" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Подтверждение пароля" %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="form-group mb-3">
+      <%= f.label :password, "Пароль", class: "form-label" %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+      <% if @minimum_password_length %>
+        <small class="form-text text-muted"><%= @minimum_password_length %> characters minimum</small>
+      <% end %>
+    </div>
 
-  <div class="field">
-    <%= f.check_box :admin %>
-    <%= f.label :admin, "Я хочу быть администратором" %>
-  </div>
+    <div class="form-group mb-3">
+      <%= f.label :password_confirmation, "Подтверждение пароля", class: "form-label" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Зарегистрироваться" %>
-  </div>
-<% end %>
+    <div class="form-check mb-3">
+      <%= f.check_box :admin, class: "form-check-input" %>
+      <%= f.label :admin, "Я хочу быть администратором", class: "form-check-label" %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="mb-4">
+      <%= f.submit "Зарегистрироваться", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <%= stylesheet_link_tag 'countdown', media: 'all' %>
+  <%= javascript_include_tag 'countdown' %>
+</head>
+<body>
+  <div class="container">
+    <h1>Локус Скоро Вернется</h1>
+    <p>Сайт находится на реконструкции. Когда снова появится доступ, мы вас уведомим.</p>
+
+    <div class="logo">
+      <%= image_tag(asset_path('Logo.png'),
+                   alt: 'Logo',
+                   width: 111,
+                   height: 167) %>
+    </div>
+
+    <div class="countdown">
+      <div class="countdown-item">
+        <span id="days">0</span>
+        <span>дней</span>
+      </div>
+      <div class="divider"></div>
+      <div class="countdown-item">
+        <span id="hours">0</span>
+        <span>часов</span>
+      </div>
+      <div class="divider"></div>
+      <div class="countdown-item">
+        <span id="minutes">0</span>
+        <span>минут</span>
+      </div>
+      <div class="divider"></div>
+      <div class="countdown-item">
+        <span id="seconds">0</span>
+        <span>секунд</span>
+      </div>
+    </div>
+
+    <%= form_with(model: @subscription,
+                  url: subscriptions_path,
+                  method: :post,
+                  local: true) do |form| %>
+      <div class="field">
+        <%= form.label :email, "Введите ваш email" %><br>
+        <%= form.email_field :email,
+                           placeholder: "example@mail.com",
+                           required: true %>
+      </div>
+      <div class="actions">
+        <%= form.submit "Подписаться", class: "subscribe-button" %>
+      </div>
+    <% end %>
+
+    <div class="telegram-button">
+      <%= image_tag(asset_path('telegram.png'),
+                   alt: 'Logo',
+                   width: 36,
+                   height: 36) %>
+    </div>
+  </div>
+</body>
+</html>
