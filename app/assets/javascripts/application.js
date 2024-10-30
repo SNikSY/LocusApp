@@ -2,3 +2,4 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+//= link favicon.ico
