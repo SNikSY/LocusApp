@@ -2,6 +2,7 @@
 
 <div class="theme_block">
   <% if @topics.any? %>
+   <%=api_v1_topics_url%>
     <% @topics.each do |topic| %>
       <div class="topic">
         <div class="category"><%= topic.category&.title %></div>

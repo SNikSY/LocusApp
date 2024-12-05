@@ -9,6 +9,7 @@ gem "puma", ">= 5.0"
 # Frontend
 gem "importmap-rails"
 gem "turbo-rails"
+gem 'sassc'
 gem "stimulus-rails"
 gem "jbuilder"
 
