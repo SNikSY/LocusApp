@@ -1,64 +1,66 @@
-<div class="container mt-4">
-  <h2 class="mb-4">Edit <%= resource_name.to_s.humanize %></h2>
-
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form" }) do |f| %>
+<div class="profile-container">
+  
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "profile-form" }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="form-group mb-3">
-      <%= f.label :email, class: "form-label" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-    </div>
+    <div class="profile-section">
+      <div class="profile-avatar">
+      <%= image_tag(resource.avatar.attached? ? url_for(resource.avatar) : "userpic.png", class: "avatar-image") %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div class="alert alert-info">
-        Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+        <label for="avatar-upload" class="avatar-label"> 
+        <%= f.file_field :avatar, id: "avatar-upload", class: "avatar-input" %>
+
+        </label>
       </div>
-    <% end %>
 
-    <div class="form-group mb-3">
-      <%= f.label :password, class: "form-label" %>
-      <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
-      <% if @minimum_password_length %>
-        <small class="form-text text-muted"><%= @minimum_password_length %> characters minimum</small>
-      <% end %>
+      <div class="profile-fields">
+        <div class="field-group">
+          <%= f.label :name, "Ваше имя", class: "field-label" %>
+          <%= f.text_field :name, class: "field-input" %>
+        </div>
+
+        <div class="field-group">
+          <%= f.label :nickname, "Ваш ник", class: "field-label" %>
+          <%= f.text_field :nickname, class: "field-input" %>
+        </div>
+
+        <div class="field-group">
+          <%= f.label :email, "Ваша почта", class: "field-label" %>
+          <%= f.email_field :email, class: "field-input" %>
+        </div>
+
+        <div class="field-group">
+          <%= f.label :city, "Город", class: "field-label" %>
+          <%= f.select :city, ["Москва", "Санкт-Петербург", "Казань", "Новосибирск"], { prompt: "Выберите город" }, class: "field-select" %>
+        </div>
+      </div>
     </div>
 
-    <div class="form-group mb-3">
-      <%= f.label :password_confirmation, class: "form-label" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+    <div class="profile-password-section">
+      <div class="field-group">
+        <%= f.label :password, "Пароль", class: "field-label" %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "field-input" %>
+      </div>
+
+      <div class="field-group">
+        <%= f.label :password_confirmation, "Подтверждение пароля", class: "field-label" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "field-input" %>
+      </div>
+
+      <div class="field-group">
+        <%= f.label :current_password, "Текущий пароль", class: "field-label" %>
+        <%= f.password_field :current_password, autocomplete: "current-password", class: "field-input" %>
+      </div>
     </div>
 
-    <div class="form-group mb-3">
-      <%= f.label :current_password, class: "form-label" %>
-      <small class="text-muted">(Введите текущий пароль для подтверждения изменений)</small>
-      <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
-    </div>
-
-    <div class="form-check mb-3">
-      <%= f.check_box :admin, class: "form-check-input" %>
-      <%= f.label :admin, "Хочу быть администратором", class: "form-check-label" %>
-    </div>
-
-    <div class="mb-4">
-      <%= f.submit "Update", class: "btn btn-primary" %>
+    <div class="profile-actions">
+      <%= f.submit "Сохранить", class: "save-button" %>
+      <%= link_to "Отмена", root_path, class: "cancel-button" %>
     </div>
   <% end %>
 
-  <hr class="my-4">
-
-  <h3 class="mb-3">Cancel my account</h3>
-  
-  <%= submit_tag 'Выйти', class: "btn btn-warning mb-3", 
-      data: { confirm: 'Вы уверены, что хотите выйти?' } %>
-
-  <div class="mb-3">
-    Unhappy? 
-    <%= button_to "Cancel my account", 
-        registration_path(resource_name), 
-        class: "btn btn-danger",
-        data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, 
-        method: :delete %>
+  <div class="delete-account-section">
+    <h3>Удалить аккаунт</h3>
+    <%= button_to "Удалить", registration_path(resource_name), method: :delete, data: { confirm: "Вы уверены, что хотите удалить аккаунт?" }, class: "delete-button" %>
   </div>
-
-  <%= link_to "Back", :back, class: "btn btn-secondary" %>
 </div>

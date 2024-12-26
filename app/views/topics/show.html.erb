@@ -1,54 +1,51 @@
 <div class="container">
   <div class="topic-header mb-4">
-    <h1 class="display-4"><%= @topic.title %></h1>
-    <p class="lead"><%= @topic.description %></p>
+    <%= link_to '< Вопросы'.html_safe, topics_path, class: 'btn btn-outline-secondary mb-3' %>
     
-    <div class="topic-meta text-muted">
-      <p><i class="bi bi-tag"></i> Категория: <%= @topic.category&.title %></p>
-      <p><i class="bi bi-geo-alt"></i> Локация: <%= @topic.location&.name %></p>
-      <p><i class="bi bi-clock"></i> Создано: <%= @topic.created_at.strftime("%d.%m.%Y %H:%M") %></p>
-    </div>
-
-    <div class="topic-actions mb-4">
-      <% if can?(:update, @topic) %>
-        <%= link_to 'Редактировать', edit_topic_path(@topic), class: 'btn btn-primary me-2' %>
-      <% end %>
-
-      <% if can?(:destroy, @topic) %>
-        <%= form_with url: topic_path(@topic), method: :post, local: true, class: 'd-inline' do %>
-          <%= hidden_field_tag '_method', 'delete' %>
-          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-          <%= submit_tag 'Удалить', class: 'btn btn-danger', 
-              data: { confirm: 'Вы уверены, что хотите удалить эту тему?' } %>
-        <% end %>
-      <% end %>
-      
-      <%= link_to 'Назад к списку тем', topics_path, class: 'btn btn-secondary' %>
-    </div>
-  </div>
-
-  <% if @topic.images.any? %>
-    <div class="topic-images mb-4">
-      <div class="row g-3">
-        <% @topic.images.each do |image| %>
-          <div class="col-md-4">
-            <%= image_tag image, class: "img-fluid rounded" %>
-          </div>
-        <% end %>
+    <div class="d-flex align-items-center mb-3">
+      <%= image_tag @topic.user.avatar.attached? ? url_for(@topic.user.avatar) : 'userpic.png', class: 'rounded-circle me-3', width: 50, height: 50 %>
+      <div>
+        <h5 class="mb-0"><%= @topic.user.name || @topic.user.email %></h5>
+        <small class="text-muted"><%= @topic.created_at.strftime("%d.%m.%Y %H:%M") %></small>
       </div>
     </div>
-  <% end %>
+
+    <h1 class="display-4"><%= @topic.title %></h1>
+    <p class="lead"><%= @topic.description %></p>
+
+    <% if @topic.images.any? %>
+      <div class="topic-images mb-4">
+        <div class="row g-3">
+          <% @topic.images.each do |image| %>
+            <div class="col-md-6">
+              <%= image_tag image, class: "img-fluid rounded shadow-sm" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="topic-actions d-flex align-items-center">
+      <%= button_to 'Лайк', like_topic_path(@topic), method: :post, class: 'btn btn-outline-primary me-3' %>
+      <span><i class="bi bi-hand-thumbs-up"></i> <%= @topic.likes_count || 0 %></span>
+    </div>
+
+    <hr>
+  </div>
 
   <div class="comments-section">
-    <h3 class="mb-4">Комментарии</h3>
+    <h3 class="mb-4">Ответы</h3>
     
     <div class="comments-list mb-4">
       <% @topic.comments.each do |comment| %>
         <div class="comment card mb-3">
           <div class="card-body">
-            <div class="d-flex justify-content-between">
-              <h4 class="card-subtitle mb-2 text-muted"><%= comment.user.email %></h4>
-              <small class="text-muted"><%= comment.created_at.strftime("%d.%m.%Y %H:%M") %></small>
+            <div class="d-flex align-items-center mb-2">
+              <%= image_tag comment.user.avatar.attached? ? url_for(comment.user.avatar) : 'userpic.png', class: 'rounded-circle me-3', width: 40, height: 40 %>
+              <div>
+                <h6 class="card-subtitle mb-0"><%= comment.user.name || comment.user.email %></h6>
+                <small class="text-muted"><%= comment.created_at.strftime("%d.%m.%Y %H:%M") %></small>
+              </div>
             </div>
             <p class="card-text"><%= comment.content %></p>
           </div>
@@ -60,12 +57,11 @@
       <h4 class="mb-3">Добавить комментарий</h4>
       <%= form_with model: [@topic, @topic.comments.build], local: true do |f| %>
         <div class="form-group mb-3">
-          <%= f.label :content, "Ваш комментарий", class: "form-label" %>
           <%= f.text_area :content, class: "form-control", rows: 3 %>
         </div>
 
         <div class="form-group">
-          <%= f.submit "Добавить комментарий", class: "btn btn-primary" %>
+          <%= f.submit "Отправить", class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>

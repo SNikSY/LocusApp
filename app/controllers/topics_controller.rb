@@ -33,7 +33,12 @@ class TopicsController < ApplicationController
       render :edit
     end
   end
-
+  def like
+    @topic = Topic.find(params[:id])
+    @topic.increment!(:likes_count) # Увеличивает значение likes_count на 1
+    redirect_to @topic, notice: 'Вы поставили лайк!'
+  end
+  
   def destroy
     @topic = Topic.find(params[:id])
     authorize! :destroy, @topic

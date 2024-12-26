@@ -2,6 +2,7 @@ class User < ApplicationRecord
   # Associations
   has_many :topics, foreign_key: :creator_user_id, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_one_attached :avatar
 
   # Authentication
   devise :database_authenticatable, :registerable,

@@ -16,9 +16,6 @@
         <%= form.text_field :query, placeholder: "Поиск", class: "search-box" %>
       <% end %>
 
-      <div class="theme_create">
-        <%= link_to 'Создать тему', new_topic_path, class: "linker green" %>
-      </div>
     </div>
 
     <div class="main_flex">
@@ -27,26 +24,57 @@
           <h5>МЕНЮ</h5>
           <ul class="nav-pages">
             <li class="nav-page">
-              <%= image_tag(asset_path('Home_01.png'), alt: 'Home', class: "nav-icon") %>
-              <%= link_to "Мой город", root_path, class: "brand-logo" %>
+              <%= image_tag(asset_path('Home_01.svg'), alt: 'Home', class: "nav-icon") %>
+              <%= link_to "Главная", root_path, class: "brand-logo" %>
             </li>
             <li class="nav-page-unactive">
-              <%= image_tag(asset_path('Popular.png'), alt: 'Home', class: "nav-icon") %>
+              <%= image_tag(asset_path('Flats.svg'), alt: 'Home', class: "nav-icon") %>
+              <%= link_to "Мои ЖК", root_path, class: "brand-logo-un" %>
+            </li>
+            <li class="nav-page-unactive">
+              <%= image_tag(asset_path('Popular.svg'), alt: 'Home', class: "nav-icon") %>
               <%= link_to "Популярное", root_path, class: "brand-logo-un" %>
             </li>
+          </ul>
+          <h5>НЕДАВНЕЕ</h5>
+          <ul class="nav-pages">
             <li class="nav-page-unactive">
-              <%= image_tag(asset_path('Messages.png'), alt: 'Home', class: "nav-icon") %>
-              <%= link_to "О нас", about_path, class: "brand-logo-un" %>
+              <%= link_to "Фили Сити", root_path, class: "brand-logo-un" %>
+            </li>
+            <li class="nav-page-unactive">
+              <%= link_to "ЖК Символ", root_path, class: "brand-logo-un" %>
+            </li>
+            <li class="nav-page-unactive">
+              <%= link_to "Зиларт", root_path, class: "brand-logo-un" %>
             </li>
           </ul>
-        </div>
-
-        <div class='user_nav_card'>
+          <h5>ПРОЕКТ</h5>
+          <ul class="nav-pages">
+            <li class="nav-page-unactive">
+              <%= link_to "О проекте", about_path, class: "brand-logo-un" %>
+            </li>
+            <li class="nav-page-unactive">
+              <%= link_to "Поддержка", root_path, class: "brand-logo-un" %>
+            </li>
+            <li class="nav-page-unactive">
+              <%= link_to "Реклама", root_path, class: "brand-logo-un" %>
+            </li>
+            <li class="nav-page-unactive">
+              <%= link_to "Застройщикам", root_path, class: "brand-logo-un" %>
+            </li>
+            <li class="nav-page-unactive">
+              <%= link_to "Правила", root_path, class: "brand-logo-un" %>
+            </li>
+          </ul>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <% if user_signed_in? %>
-              <li>
+              <li class="profile-name">
                 <%= image_tag(asset_path('userpic.png'), alt: 'User', class: "user-icon") %>
-                <%= link_to 'Профиль', edit_user_registration_path %>
+                <div class="profile-card">
+                <%= link_to 'Андрей Борисов', edit_user_registration_path, class: "profile-card-name" %>
+                <%= link_to '@aaborisov', edit_user_registration_path, class: "profile-card-id" %>
+                </div>
+                
               </li>
               
               <% if current_user.admin? %>
@@ -72,40 +100,23 @@
       </div>
 
       <div class="nav_nav">
-        <div class="nav-wrapper">
-          <h5>Темы</h5>
-          <ul class="nav-pages">
-            <li class="nav-page-unactive">
-              <%= image_tag(asset_path('design_brush.png'), alt: 'Home', class: "theme-icon") %>
-              <%= link_to "Дизайн", root_path, class: "brand-logo-un" %>
+        <div class="nav-wrapper-right">
+          <ul class="flat-pages">
+            <li class="flat-page-unactive">
+              <%= image_tag(asset_path('Grand-Park.png'), alt: 'Home', class: "flat-icon") %>
+              <%= link_to "ЖК Гранд Парк", root_path, class: "brand-logo-un" %>
             </li>
-            <li class="nav-page-unactive">
-              <%= image_tag(asset_path('culture_family.png'), alt: 'Home', class: "theme-icon") %>
-              <%= link_to "Культура", root_path, class: "brand-logo-un" %>
+            <li class="flat-page-unactive">
+              <%= image_tag(asset_path('Zilart.png'), alt: 'Home', class: "flat-icon") %>
+              <%= link_to "Зиларт", root_path, class: "brand-logo-un" %>
             </li>
-            <li class="nav-page-unactive">
-              <%= image_tag(asset_path('environment_forest.png'), alt: 'Home', class: "theme-icon") %>
-              <%= link_to "Окружающая среда", root_path, class: "brand-logo-un" %>
+            <li class="flat-page-unactive">
+              <%= image_tag(asset_path('Flat-Symbol.png'), alt: 'Home', class: "flat-icon") %>
+              <%= link_to "ЖК Символ", root_path, class: "brand-logo-un" %>
             </li>
-            <li class="nav-page-unactive">
-              <%= image_tag(asset_path('transport_bike.png'), alt: 'Home', class: "theme-icon") %>
-              <%= link_to "Транспорт", root_path, class: "brand-logo-un" %>
-            </li>
-            <li class="nav-page-unactive">
-              <%= image_tag(asset_path('economics_money.png'), alt: 'Home', class: "theme-icon") %>
-              <%= link_to "Экономика", root_path, class: "brand-logo-un" %>
-            </li>
-            <li class="nav-page-unactive">
-              <%= image_tag(asset_path('real_estate.png'), alt: 'Home', class: "theme-icon") %>
-              <%= link_to "Недвижимость", root_path, class: "brand-logo-un" %>
-            </li>
-            <li class="nav-page-unactive">
-              <%= image_tag(asset_path('technology.png'), alt: 'Home', class: "theme-icon") %>
-              <%= link_to "Технологии", root_path, class: "brand-logo-un" %>
-            </li>
-            <li class="nav-page-unactive">
-              <%= image_tag(asset_path('government.png'), alt: 'Home', class: "theme-icon") %>
-              <%= link_to "Правительство", root_path, class: "brand-logo-un" %>
+            <li class="flat-page-unactive">
+              <%= image_tag(asset_path('Flat-Metropolis.png'), alt: 'Home', class: "flat-icon") %>
+              <%= link_to "ЖК Метрополия", root_path, class: "brand-logo-un" %>
             </li>
           </ul>
         </div>

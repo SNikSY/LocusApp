@@ -5,8 +5,10 @@ Rails.application.routes.draw do
     end
   end
   # Authentication routes
-  devise_for :users
-  
+  devise_for :users, controllers: {
+  registrations: 'users/registrations'
+}
+
   # Root route
   root to: 'topics#index'
 
@@ -14,11 +16,15 @@ Rails.application.routes.draw do
   resources :topics do
     resources :comments, only: [:create]
   end
-
+  resources :topics do
+    member do
+      post 'like', to: 'topics#like'
+    end
+  end
+  
   # Static pages
   get '/coming_soon', to: 'coming_soon#index'
   get '/about', to: 'pages#about', as: :about
-
 
   # Subscription management
   resources :subscriptions, only: [:create]

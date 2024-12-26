@@ -1,0 +1,267 @@
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  background-color: white;
+}
+
+.registration-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.registration-container {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  overflow: hidden;
+  align-items: center;
+}
+
+.form-container {
+  flex: 1;
+  display: flex;
+  padding: 2.778vw;
+  background-color: white;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 0.694vw;
+  color: #333;
+}
+
+p {
+  margin-bottom: 1.389vw;
+  color: #666;
+}
+
+.oauth-buttons {
+  display: flex;
+  gap: 0.833vw;
+  margin-bottom: 1.389vw;
+  flex-direction: column;
+}
+.oauth-icon {
+  width: 1.389vw;
+  height: 1.389vw;
+}
+.oauth-btn {
+  flex: 1;
+  padding: 1.111vw;
+  font-size: 1.111vw;
+  display: flex;
+  gap: 0.8vw;
+  justify-content: center;
+  align-items: center;
+  width: 17.778vw;
+  border: 1px solid #e2e2e2;
+  border-radius: 4.167vw;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.google-btn {
+  color: black;
+}
+
+.yandex-btn {
+  color: black;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.389vw 0;
+}
+
+.divider span {
+  padding: 0 0.694vw;
+  color: #000;
+}
+
+.divider:before,
+.divider:after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  width: 16vw;
+  background-color: #000;
+}
+
+.input-group {
+  display: flex;
+  gap: 0.694vw;
+}
+
+input {
+  width: 100%;
+  padding: 0.694vw;
+  font-size: 1.111vw;
+  margin-top: 1.111vw;
+  margin-bottom: 2.222vw;
+  border: 1px solid #ddd;
+  border-radius: 0.347vw;
+}
+
+.hint {
+  margin-top: -1.111vw;
+  font-size: 0.972vw;
+  color: #888;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 1.111vw;
+  background-color: #005bff;
+  color: white;
+  font-size: 1.111vw;
+  border: none;
+  border-radius: 0.833vw;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+.image-container {
+  flex: 1;
+  display: flex;
+  width: 80%;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-placeholder {
+  width: 80%;
+  height: 80%;
+}
+label {
+  font-size: 1.111vw;
+  font-weight: 600;
+}
+.reg-banner {
+  width: 100%;
+}
+
+.profile-container {
+  max-width: 55.556vw;
+  margin: 0 auto;
+  padding: 1.389vw;
+  background-color: #fff;
+  border-radius: 0.694vw;
+}
+
+.profile-header {
+  text-align: center;
+  font-size: 1.667vw;
+  margin-bottom: 1.389vw;
+}
+
+.profile-section {
+  display: flex;
+  gap: 1.389vw;
+  flex-direction: column;
+}
+
+.profile-avatar {
+  text-align: center;
+  text-align: center;
+  display: flex;
+  gap: 1.389vw;
+  align-items: center;
+}
+
+.avatar-image {
+  width: 6.944vw;
+  height: 6.944vw;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatar-label {
+  display: inline-block;
+  margin-top: 0.694vw;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.profile-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-items: start;
+  align-content: flex-start;
+}
+
+.field-group {
+  margin-bottom: 1.042vw;
+}
+
+.field-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.347vw;
+}
+
+.field-input,
+.field-select {
+  width: 100%;
+  padding: 0.694vw;
+  border: 1px solid #ccc;
+  border-radius: 0.347vw;
+}
+
+.profile-password-section {
+  margin-top: 1.389vw;
+}
+
+.profile-actions {
+  margin-top: 1.389vw;
+  gap: 1.389vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.save-button {
+  background-color: #007bff;
+  color: white;
+  padding: 0.694vw 1.389vw;
+  border: none;
+  border-radius: 4.167vw;
+  cursor: pointer;
+}
+
+.cancel-button {
+  color: #333;
+  padding: 0px 1.389vw;
+  border: none;
+  display: flex;
+  border-radius: 0.347vw;
+  cursor: pointer;
+  border-radius: 4.167vw;
+  align-items: center;
+}
+
+.delete-account-section {
+  margin-top: 2.778vw;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+  padding: 0.694vw 1.389vw;
+  border: none;
+  border-radius: 4.167vw;
+  cursor: pointer;
+}
