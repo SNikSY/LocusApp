@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :api, format: 'json' do
     namespace :v1 do
-      resources :topics, only: :index
+      resources :topics
     end
   end
   # Authentication routes
