@@ -15,9 +15,9 @@ gem "jbuilder"
 
 # Optional features (commented out)
 # gem "redis", ">= 4.0.1"
-# gem "kredis"
+gem "kredis"
 # gem "bcrypt", "~> 3.1.7"
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 # Cross-platform compatibility
 gem "tzinfo-data", platforms: %i[windows jruby]
