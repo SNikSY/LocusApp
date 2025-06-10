@@ -3,7 +3,7 @@ class Topic < ApplicationRecord
      belongs_to :category, optional: true
      belongs_to :location, optional: true
      
-     has_one_attached :images  
+     has_many_attached :images
      has_many :comments, dependent: :destroy
 
      validates :title, presence: true
