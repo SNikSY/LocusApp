@@ -10,7 +10,7 @@ class Ability
       can :read, :all
       
       can [:update, :destroy], Topic, creator_user_id: user.id
-      can [:update, :destroy], Comment, creator_user_id: user.id
+      can [:update, :destroy], Comment, user_id: user.id
       
       can :create, Topic
     end
