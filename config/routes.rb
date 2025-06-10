@@ -12,11 +12,9 @@ Rails.application.routes.draw do
   # Root route
   root to: 'topics#index'
 
-  # Topic routes with nested comments
+  # Topic routes with nested comments and like action
   resources :topics do
     resources :comments, only: [:create]
-  end
-  resources :topics do
     member do
       post 'like', to: 'topics#like'
     end
